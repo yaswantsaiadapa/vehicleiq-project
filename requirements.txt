@@ -1,0 +1,12 @@
+streamlit
+fastapi
+uvicorn[standard]
+torch
+transformers
+numpy
+pillow
+requests
+python-dotenv
+boto3
+botocore
+pydantic
