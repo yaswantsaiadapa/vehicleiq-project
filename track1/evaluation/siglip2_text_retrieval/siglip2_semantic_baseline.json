@@ -1,0 +1,603 @@
+{
+  "model": "google/siglip2-base-patch16-224",
+  "gallery_size": 2155,
+  "embedding_dimension": 768,
+  "benchmark_queries": {
+    "red sedan": {
+      "required": [
+        "red",
+        "sedan"
+      ]
+    },
+    "white pickup truck": {
+      "required": [
+        "white",
+        "pickup"
+      ]
+    },
+    "blue pickup truck": {
+      "required": [
+        "blue",
+        "pickup"
+      ]
+    },
+    "white truck": {
+      "required": [
+        "white",
+        "truck"
+      ]
+    },
+    "blue bus": {
+      "required": [
+        "blue",
+        "bus"
+      ]
+    },
+    "red SUV": {
+      "required": [
+        "red",
+        "suv"
+      ]
+    },
+    "black SUV": {
+      "required": [
+        "black",
+        "suv"
+      ]
+    },
+    "white van": {
+      "required": [
+        "white",
+        "van"
+      ]
+    }
+  },
+  "mean_precision_at_10": 0.7749999999999999,
+  "mean_ndcg_at_10": 0.8878210900834209,
+  "query_results": {
+    "red sedan": {
+      "results": [
+        {
+          "rank": 1,
+          "vehicle_id": "b1f099fd-e45e-4ded-b183-725741959fba",
+          "similarity": 0.15213046967983246
+        },
+        {
+          "rank": 2,
+          "vehicle_id": "b994a201-f6da-4e9c-b5cd-85f667aa816b",
+          "similarity": 0.1497335135936737
+        },
+        {
+          "rank": 3,
+          "vehicle_id": "610b30a1-5f40-41d0-9c05-fbd1448d3f6e",
+          "similarity": 0.14740701019763947
+        },
+        {
+          "rank": 4,
+          "vehicle_id": "f70f8c5d-bdab-41f5-8f04-a4b7915d1a06",
+          "similarity": 0.14716854691505432
+        },
+        {
+          "rank": 5,
+          "vehicle_id": "84345111-4877-4dcf-9331-5ef50aa80fdc",
+          "similarity": 0.14709675312042236
+        },
+        {
+          "rank": 6,
+          "vehicle_id": "0ee59af3-1502-494b-a3a3-1c4fade7873b",
+          "similarity": 0.1467013657093048
+        },
+        {
+          "rank": 7,
+          "vehicle_id": "4ad0b436-0bb9-4a2b-a3f7-7b74d3fd8668",
+          "similarity": 0.14646312594413757
+        },
+        {
+          "rank": 8,
+          "vehicle_id": "cfad5a2f-3aba-450a-8c80-3d76d1dadf62",
+          "similarity": 0.1461515724658966
+        },
+        {
+          "rank": 9,
+          "vehicle_id": "3a02a86d-154b-4ee2-bd5e-a0811113a9d8",
+          "similarity": 0.1459413468837738
+        },
+        {
+          "rank": 10,
+          "vehicle_id": "870e5570-4c79-42ba-bd97-a862d86004f0",
+          "similarity": 0.14541232585906982
+        }
+      ],
+      "relevance": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "precision_at_10": 1.0,
+      "ndcg_at_10": 1.0
+    },
+    "white pickup truck": {
+      "results": [
+        {
+          "rank": 1,
+          "vehicle_id": "d1e6f0f2-119c-4aff-9ee9-395d9ff7b458",
+          "similarity": 0.15437641739845276
+        },
+        {
+          "rank": 2,
+          "vehicle_id": "abd32535-8acb-49c5-8da4-9e904d263d8c",
+          "similarity": 0.15308430790901184
+        },
+        {
+          "rank": 3,
+          "vehicle_id": "8f84c429-2ca5-4c80-bf34-abaa1f3f7b80",
+          "similarity": 0.1523745208978653
+        },
+        {
+          "rank": 4,
+          "vehicle_id": "7b9fdaaf-ed7e-4548-964d-db3b82fa2c2c",
+          "similarity": 0.15098974108695984
+        },
+        {
+          "rank": 5,
+          "vehicle_id": "f0501672-9ac3-4c6b-9c86-01e231456035",
+          "similarity": 0.15093083679676056
+        },
+        {
+          "rank": 6,
+          "vehicle_id": "81bfbdeb-9507-4ec0-83cc-d5053400e943",
+          "similarity": 0.15083098411560059
+        },
+        {
+          "rank": 7,
+          "vehicle_id": "493b6c03-ab7d-4e45-9f1c-f0095ca156da",
+          "similarity": 0.15077444911003113
+        },
+        {
+          "rank": 8,
+          "vehicle_id": "c45de46e-2338-4559-a05b-4ed7c40ec5ac",
+          "similarity": 0.1505388766527176
+        },
+        {
+          "rank": 9,
+          "vehicle_id": "97da9e79-ca22-465d-ba53-24901d459c26",
+          "similarity": 0.14995554089546204
+        },
+        {
+          "rank": 10,
+          "vehicle_id": "3b6f2b49-9399-4056-9d7d-57e2b4be928f",
+          "similarity": 0.1499481499195099
+        }
+      ],
+      "relevance": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "precision_at_10": 1.0,
+      "ndcg_at_10": 1.0
+    },
+    "blue pickup truck": {
+      "results": [
+        {
+          "rank": 1,
+          "vehicle_id": "3ece5534-4718-4410-8c9e-42c2785e82cc",
+          "similarity": 0.16361451148986816
+        },
+        {
+          "rank": 2,
+          "vehicle_id": "3627bec0-4ede-48bc-8597-d4b946c94a27",
+          "similarity": 0.16353760659694672
+        },
+        {
+          "rank": 3,
+          "vehicle_id": "bf09d471-dd92-4695-8fb5-1e0c815aa949",
+          "similarity": 0.15985272824764252
+        },
+        {
+          "rank": 4,
+          "vehicle_id": "094ed625-f7d2-4b4a-8a76-629540a9df6c",
+          "similarity": 0.15976691246032715
+        },
+        {
+          "rank": 5,
+          "vehicle_id": "bd0025c7-275b-45d8-9727-7caf9f240714",
+          "similarity": 0.15648134052753448
+        },
+        {
+          "rank": 6,
+          "vehicle_id": "56b69322-75cd-473a-b596-785a4262559b",
+          "similarity": 0.15489378571510315
+        },
+        {
+          "rank": 7,
+          "vehicle_id": "2f3d8f94-43dd-4b06-a0a9-ccd9537c0e3c",
+          "similarity": 0.1510176956653595
+        },
+        {
+          "rank": 8,
+          "vehicle_id": "575a9a07-659f-4913-978a-c630df5452a2",
+          "similarity": 0.1503385454416275
+        },
+        {
+          "rank": 9,
+          "vehicle_id": "aa4f0697-2f43-467e-8aa2-1a5faaa8f588",
+          "similarity": 0.15016378462314606
+        },
+        {
+          "rank": 10,
+          "vehicle_id": "1772326b-673a-4cd9-afa0-2e0f70b22465",
+          "similarity": 0.148280531167984
+        }
+      ],
+      "relevance": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "precision_at_10": 1.0,
+      "ndcg_at_10": 1.0
+    },
+    "white truck": {
+      "results": [
+        {
+          "rank": 1,
+          "vehicle_id": "395e137e-50d0-4e0b-a35f-80e6d0ba1407",
+          "similarity": 0.14287403225898743
+        },
+        {
+          "rank": 2,
+          "vehicle_id": "c45de46e-2338-4559-a05b-4ed7c40ec5ac",
+          "similarity": 0.14233392477035522
+        },
+        {
+          "rank": 3,
+          "vehicle_id": "467dcdb2-ad27-49dd-bdfc-aece3f2d25b9",
+          "similarity": 0.14230549335479736
+        },
+        {
+          "rank": 4,
+          "vehicle_id": "685da05a-8bb2-49aa-9af7-b06ddb765a1d",
+          "similarity": 0.14149531722068787
+        },
+        {
+          "rank": 5,
+          "vehicle_id": "8f84c429-2ca5-4c80-bf34-abaa1f3f7b80",
+          "similarity": 0.13912339508533478
+        },
+        {
+          "rank": 6,
+          "vehicle_id": "d1e6f0f2-119c-4aff-9ee9-395d9ff7b458",
+          "similarity": 0.13909709453582764
+        },
+        {
+          "rank": 7,
+          "vehicle_id": "071ae155-e246-4633-86ef-4b319cdc2369",
+          "similarity": 0.1388295590877533
+        },
+        {
+          "rank": 8,
+          "vehicle_id": "97da9e79-ca22-465d-ba53-24901d459c26",
+          "similarity": 0.13874857127666473
+        },
+        {
+          "rank": 9,
+          "vehicle_id": "f0501672-9ac3-4c6b-9c86-01e231456035",
+          "similarity": 0.1382492184638977
+        },
+        {
+          "rank": 10,
+          "vehicle_id": "95173ef2-a386-4567-9fe0-e2338ccc76d3",
+          "similarity": 0.13790646195411682
+        }
+      ],
+      "relevance": [
+        true,
+        true,
+        false,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "precision_at_10": 0.9,
+      "ndcg_at_10": 0.9504206262110481
+    },
+    "blue bus": {
+      "results": [
+        {
+          "rank": 1,
+          "vehicle_id": "93fdc2b3-71eb-40eb-bc40-e7efc7adb110",
+          "similarity": 0.12307713180780411
+        },
+        {
+          "rank": 2,
+          "vehicle_id": "88121c67-b69a-43c0-bf1c-34f76fb1f827",
+          "similarity": 0.12258902192115784
+        },
+        {
+          "rank": 3,
+          "vehicle_id": "efdaed38-f8de-4bc5-bfaf-e38a2fc2b5a8",
+          "similarity": 0.11793564260005951
+        },
+        {
+          "rank": 4,
+          "vehicle_id": "eab5c04d-0edc-4aa9-8214-7dd668885ff3",
+          "similarity": 0.11732207238674164
+        },
+        {
+          "rank": 5,
+          "vehicle_id": "8d0d49d8-3cc8-4a77-bc1c-6212b064b5fa",
+          "similarity": 0.115807443857193
+        },
+        {
+          "rank": 6,
+          "vehicle_id": "7eebe37c-7ac3-48fa-8d93-01df542e1909",
+          "similarity": 0.11486424505710602
+        },
+        {
+          "rank": 7,
+          "vehicle_id": "f0cc74b8-e0ab-4ba3-9578-be5ab51d37f3",
+          "similarity": 0.11336739361286163
+        },
+        {
+          "rank": 8,
+          "vehicle_id": "1d1a3c88-43fa-480f-a219-6089a58a1069",
+          "similarity": 0.11290258169174194
+        },
+        {
+          "rank": 9,
+          "vehicle_id": "c187ffd7-d082-4ccb-b835-ab3e200f8394",
+          "similarity": 0.11221516132354736
+        },
+        {
+          "rank": 10,
+          "vehicle_id": "e5ff51f6-18c6-431a-8f3e-169f07bced75",
+          "similarity": 0.11104250699281693
+        }
+      ],
+      "relevance": [
+        false,
+        false,
+        false,
+        false,
+        true,
+        false,
+        false,
+        false,
+        false,
+        false
+      ],
+      "precision_at_10": 0.1,
+      "ndcg_at_10": 0.38685280723454163
+    },
+    "red SUV": {
+      "results": [
+        {
+          "rank": 1,
+          "vehicle_id": "ee281d30-d0d1-4c83-a086-fbe22508f0d7",
+          "similarity": 0.0942302942276001
+        },
+        {
+          "rank": 2,
+          "vehicle_id": "0ee59af3-1502-494b-a3a3-1c4fade7873b",
+          "similarity": 0.0906921848654747
+        },
+        {
+          "rank": 3,
+          "vehicle_id": "d91e9520-7b05-4cbf-a539-31e8b388880a",
+          "similarity": 0.09048371762037277
+        },
+        {
+          "rank": 4,
+          "vehicle_id": "6f7d8745-0629-4721-9293-7d73334db889",
+          "similarity": 0.08913056552410126
+        },
+        {
+          "rank": 5,
+          "vehicle_id": "6552ac6f-6af6-4f28-8961-79e09901e2c6",
+          "similarity": 0.08912228047847748
+        },
+        {
+          "rank": 6,
+          "vehicle_id": "96148b51-9365-42a5-9c62-815242fad1bf",
+          "similarity": 0.08866682648658752
+        },
+        {
+          "rank": 7,
+          "vehicle_id": "b460dc00-ca30-4ae6-a45e-20760bc13b00",
+          "similarity": 0.0883903056383133
+        },
+        {
+          "rank": 8,
+          "vehicle_id": "7e6b319f-892d-4fd7-b428-f71306f9eca1",
+          "similarity": 0.08802659064531326
+        },
+        {
+          "rank": 9,
+          "vehicle_id": "b7c19f0b-5861-4b92-b8c3-3a4e963d22a4",
+          "similarity": 0.08775289356708527
+        },
+        {
+          "rank": 10,
+          "vehicle_id": "ccb4ddf4-2223-40b4-89d3-ba8743e226fa",
+          "similarity": 0.08729808777570724
+        }
+      ],
+      "relevance": [
+        true,
+        false,
+        true,
+        true,
+        false,
+        false,
+        false,
+        false,
+        true,
+        true
+      ],
+      "precision_at_10": 0.5,
+      "ndcg_at_10": 0.8549453387073992
+    },
+    "black SUV": {
+      "results": [
+        {
+          "rank": 1,
+          "vehicle_id": "ed43a5d8-6515-4838-936f-97a5ce575411",
+          "similarity": 0.07818638533353806
+        },
+        {
+          "rank": 2,
+          "vehicle_id": "3e5dcfb4-6c29-41b4-9d16-db8de86d93e5",
+          "similarity": 0.0765572339296341
+        },
+        {
+          "rank": 3,
+          "vehicle_id": "45b94206-1ff7-4b9b-877f-545cfc3ab00e",
+          "similarity": 0.07633005827665329
+        },
+        {
+          "rank": 4,
+          "vehicle_id": "b4c7bc70-edd0-4d3f-9c79-37bb31c7777a",
+          "similarity": 0.07548712193965912
+        },
+        {
+          "rank": 5,
+          "vehicle_id": "321b2eb6-570e-4a43-8f73-5ea33723283d",
+          "similarity": 0.07510584592819214
+        },
+        {
+          "rank": 6,
+          "vehicle_id": "e1f95b1f-6342-4ad3-bd36-a6b1dc8a1c66",
+          "similarity": 0.07475188374519348
+        },
+        {
+          "rank": 7,
+          "vehicle_id": "d456460a-ca0e-40a5-8fe0-d1ae273b0afc",
+          "similarity": 0.07455682754516602
+        },
+        {
+          "rank": 8,
+          "vehicle_id": "5a3b90ad-d47a-42c2-b1dc-2b066218118b",
+          "similarity": 0.07428984344005585
+        },
+        {
+          "rank": 9,
+          "vehicle_id": "91614e8e-9d91-4470-b2fd-8018c8ef8ff1",
+          "similarity": 0.07307799160480499
+        },
+        {
+          "rank": 10,
+          "vehicle_id": "a3e82a8f-3db6-49d3-b465-c7d387abe5e2",
+          "similarity": 0.07296612858772278
+        }
+      ],
+      "relevance": [
+        true,
+        true,
+        false,
+        false,
+        true,
+        true,
+        true,
+        true,
+        false,
+        true
+      ],
+      "precision_at_10": 0.7,
+      "ndcg_at_10": 0.9103499485143788
+    },
+    "white van": {
+      "results": [
+        {
+          "rank": 1,
+          "vehicle_id": "797f426a-3993-434d-bdad-f64f33a18988",
+          "similarity": 0.14793626964092255
+        },
+        {
+          "rank": 2,
+          "vehicle_id": "236aa0c1-934e-4e06-888d-ae73a2856c1d",
+          "similarity": 0.14665940403938293
+        },
+        {
+          "rank": 3,
+          "vehicle_id": "fc374d84-58c2-4e78-8b5c-eb2972670bc3",
+          "similarity": 0.14635932445526123
+        },
+        {
+          "rank": 4,
+          "vehicle_id": "ead80e2e-3a47-4fbf-ad64-a0a0b5e2e09e",
+          "similarity": 0.1449562907218933
+        },
+        {
+          "rank": 5,
+          "vehicle_id": "2d835e54-1d33-43a7-80c7-28270d8594e6",
+          "similarity": 0.14476265013217926
+        },
+        {
+          "rank": 6,
+          "vehicle_id": "8a6b887f-a8d9-4f88-b14c-26a25218efac",
+          "similarity": 0.14391757547855377
+        },
+        {
+          "rank": 7,
+          "vehicle_id": "aa8276e7-0c24-417c-99e4-5e2dc62b56bb",
+          "similarity": 0.14263242483139038
+        },
+        {
+          "rank": 8,
+          "vehicle_id": "99acc8c6-5f17-4897-b43e-6b6358cfcd41",
+          "similarity": 0.14244848489761353
+        },
+        {
+          "rank": 9,
+          "vehicle_id": "b5668880-d01b-46fc-8d96-d194130c3f3c",
+          "similarity": 0.14136555790901184
+        },
+        {
+          "rank": 10,
+          "vehicle_id": "3934cb2d-18ac-4d4d-9f58-6d9a4a24fef0",
+          "similarity": 0.14054681360721588
+        }
+      ],
+      "relevance": [
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true,
+        true
+      ],
+      "precision_at_10": 1.0,
+      "ndcg_at_10": 1.0
+    }
+  }
+}

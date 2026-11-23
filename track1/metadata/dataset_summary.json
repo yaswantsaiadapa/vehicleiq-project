@@ -1,0 +1,28 @@
+{
+  "dataset": "AI_CITY_2023_TRACK2_NL_RETRIEVAL",
+  "source": {
+    "source_root": "/content/drive/MyDrive/VehicleIQ/datasets/AI_CITY_2023_TRACK2_NL_RETRIEVAL/source/data"
+  },
+  "tracks": {
+    "train": 2155,
+    "test": 184,
+    "test_queries": 184
+  },
+  "processing": {
+    "train_videos": 23,
+    "test_videos": 28,
+    "train_frames_requested": 65077,
+    "test_frames_requested": 16752,
+    "train_crops_saved": 116159,
+    "test_crops_saved": 33053,
+    "train_existing_skipped": 69040,
+    "test_existing_skipped": 0,
+    "train_invalid_crops": 0,
+    "test_invalid_crops": 0,
+    "train_failed_writes": 0,
+    "test_failed_writes": 0,
+    "train_missing_videos": 0,
+    "test_missing_videos": 0
+  },
+  "runtime_seconds": 4044.1756868362427
+}

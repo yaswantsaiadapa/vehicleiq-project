@@ -1,0 +1,33 @@
+# VehicleIQ — Python Dependencies
+# Install with: pip install -r requirements.txt
+
+# ── Web framework ──────────────────────────────────────────────────
+fastapi>=0.110.0
+uvicorn[standard]>=0.27.0
+python-multipart>=0.0.9       # multipart file upload
+aiofiles>=23.2.0              # async file I/O
+
+# ── Frontend ───────────────────────────────────────────────────────
+streamlit>=1.32.0
+requests>=2.31.0              # Streamlit → FastAPI HTTP calls
+
+# ── Computer Vision / Detection ───────────────────────────────────
+ultralytics>=8.1.0            # YOLO + ByteTrack built-in
+opencv-python-headless>=4.8.0
+
+# ── Multimodal Embeddings ─────────────────────────────────────────
+transformers>=4.38.0
+torch>=2.0.0
+torchvision>=0.15.0
+pillow>=10.0.0
+accelerate>=0.27.0
+
+# ── Vector Search ─────────────────────────────────────────────────
+faiss-cpu>=1.7.4              # Use faiss-gpu if CUDA is available
+
+# ── Data ──────────────────────────────────────────────────────────
+numpy>=1.24.0
+pandas>=2.0.0
+
+# ── Config ────────────────────────────────────────────────────────
+python-dotenv>=1.0.0
