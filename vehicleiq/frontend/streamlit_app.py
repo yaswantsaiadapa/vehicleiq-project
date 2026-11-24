@@ -170,44 +170,149 @@ for key, default in {
     if key not in st.session_state:
         st.session_state[key] = default
 
-# ── API helpers ───────────────────────────────────────────────────
+# ── API helpers & In-Process Fallback for Streamlit Cloud ─────────
 
-def api_get(path: str, timeout: int = 10) -> dict | None:
+@st.cache_resource
+def _get_local_services():
+    """Load retrieval engine in-process when deployed on Streamlit Cloud without separate FastAPI server."""
+    import sys
+    from pathlib import Path
+
+    viq_root = Path(__file__).resolve().parent.parent
+    repo_root = viq_root.parent
+    for p in [str(viq_root), str(repo_root)]:
+        if p not in sys.path:
+            sys.path.insert(0, p)
+
+    from app.services.database import DatabaseService
+    from app.services.embedding import EmbeddingService
+    from app.services.retrieval import RetrievalService
+    from app.services.storage import CloudStorageService
+
+    return {
+        "db": DatabaseService(),
+        "embedding": EmbeddingService(),
+        "retrieval": RetrievalService(),
+        "storage": CloudStorageService(),
+    }
+
+
+def _local_enrich_hits(hits: list[dict], db, storage) -> list[dict]:
+    vehicle_ids = [h["vehicle_id"] for h in hits]
+    vehicles_by_id = {v["vehicle_id"]: v for v in db.get_vehicles_by_ids(vehicle_ids)}
+
+    results = []
+    for h in hits:
+        vid = h["vehicle_id"]
+        v = vehicles_by_id.get(vid)
+        if not v:
+            continue
+        rec = v.get("json_record") or {}
+        crops = rec.get("visual", {}).get("representative_crops", [])
+        first_file = crops[0] if crops else "frame_000001.jpg"
+        if "/" in first_file or "\\" in first_file:
+            first_file = first_file.replace("\\", "/").split("/")[-1]
+
+        thumb_url = storage.get_crop_url(vid, first_file) if storage.is_cloud_enabled else None
+        results.append({
+            "vehicle_id": vid,
+            "rank": h["rank"],
+            "score": h.get("dense_score") or h.get("score", 0.0),
+            "dense_score": h.get("dense_score") or h.get("score", 0.0),
+            "sparse_score": h.get("sparse_score", 0.0),
+            "hybrid_score": h.get("hybrid_score") or h.get("score", 0.0),
+            "vehicle_type": v.get("vehicle_type", "vehicle"),
+            "color": v.get("color", "unknown"),
+            "body_style": v.get("body_style", "vehicle"),
+            "descriptions": rec.get("descriptions", [])[:2],
+            "thumbnail_url": thumb_url,
+        })
+    return results
+
+
+def api_get(path: str, timeout: int = 5) -> dict | None:
     try:
         r = requests.get(f"{API_URL}{path}", timeout=timeout)
         r.raise_for_status()
         return r.json()
-    except requests.ConnectionError:
-        st.error("❌ Cannot connect to VehicleIQ backend. Is the FastAPI server running on port 8000?")
+    except (requests.ConnectionError, requests.Timeout):
+        # In-process fallback for Streamlit Cloud
+        services = _get_local_services()
+        if path.startswith("/vehicles/"):
+            vid = path.replace("/vehicles/", "").strip()
+            v = services["db"].get_vehicle(vid)
+            if v:
+                rec = v.get("json_record") or {}
+                crops = rec.get("visual", {}).get("representative_crops", [])
+                crop_urls = []
+                for c in crops:
+                    fn = c.replace("\\", "/").split("/")[-1]
+                    if services["storage"].is_cloud_enabled:
+                        crop_urls.append(services["storage"].get_crop_url(vid, fn))
+                return {
+                    "vehicle_id": vid,
+                    "vehicle": v.get("vehicle", {}),
+                    "tracking": v.get("tracking", {}),
+                    "vehicle_type": v.get("vehicle_type"),
+                    "color": v.get("color"),
+                    "body_style": v.get("body_style"),
+                    "crop_urls": crop_urls,
+                    "json_record": rec,
+                }
         return None
     except Exception as e:
         st.error(f"API error: {e}")
         return None
 
 
-def api_post(path: str, json_data: dict | None = None, timeout: int = 120) -> dict | None:
+def api_post(path: str, json_data: dict | None = None, timeout: int = 10) -> dict | None:
     try:
         r = requests.post(f"{API_URL}{path}", json=json_data, timeout=timeout)
         r.raise_for_status()
         return r.json()
-    except requests.ConnectionError:
-        st.error("❌ Cannot connect to VehicleIQ backend. Is the FastAPI server running on port 8000?")
+    except (requests.ConnectionError, requests.Timeout):
+        # In-process fallback for Streamlit Cloud
+        services = _get_local_services()
+        if path == "/search":
+            query = (json_data or {}).get("query", "")
+            top_k = (json_data or {}).get("top_k", 10)
+            alpha = (json_data or {}).get("alpha", 0.5)
+
+            q_vec = services["embedding"].encode_text(query)[0]
+            hits = services["retrieval"].search_hybrid(q_vec, query, top_k=top_k, alpha=alpha)
+            res = _local_enrich_hits(hits, services["db"], services["storage"])
+            return {
+                "query": query,
+                "results": res,
+                "total": len(res),
+                "index_size": services["retrieval"].vector_count,
+            }
         return None
     except Exception as e:
-        st.error(f"API error: {e}")
+        st.error(f"Search error: {e}")
         return None
 
 
-def api_post_image(path: str, file_bytes: bytes, filename: str, top_k: int = 10, timeout: int = 120) -> dict | None:
+def api_post_image(path: str, file_bytes: bytes, filename: str, top_k: int = 10, timeout: int = 10) -> dict | None:
     try:
         files = {"file": (filename, file_bytes, "image/jpeg")}
         data = {"top_k": str(top_k)}
         r = requests.post(f"{API_URL}{path}", files=files, data=data, timeout=timeout)
         r.raise_for_status()
         return r.json()
-    except requests.ConnectionError:
-        st.error("❌ Cannot connect to VehicleIQ backend. Is the FastAPI server running on port 8000?")
-        return None
+    except (requests.ConnectionError, requests.Timeout):
+        # In-process fallback for Streamlit Cloud
+        services = _get_local_services()
+        pil_img = Image.open(io.BytesIO(file_bytes)).convert("RGB")
+        q_vec = services["embedding"].encode_images([pil_img])[0]
+        hits = services["retrieval"].search_dense(q_vec, top_k=top_k)
+        res = _local_enrich_hits(hits, services["db"], services["storage"])
+        return {
+            "filename": filename,
+            "results": res,
+            "total": len(res),
+            "index_size": services["retrieval"].vector_count,
+        }
     except Exception as e:
         st.error(f"Image search error: {e}")
         return None
