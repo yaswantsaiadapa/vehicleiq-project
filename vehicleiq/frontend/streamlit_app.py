@@ -384,35 +384,26 @@ def render_vehicle_grid(results: list[dict], search_mode: str = "text"):
                     header_line = (
                         f'<span class="rank-badge">#{r["rank"]} RRF: {rrf_score:.5f}</span>'
                         f'<div style="display:flex;justify-content:space-between;align-items:center;margin-top:2px;">'
-                        f'  <span style="color:{s_color};font-weight:600;font-size:0.8rem;">SigLIP2: {dense_score:.3f}</span>'
-                        f'  <span style="color:#d29922;font-size:0.75rem;font-weight:500;">BM25: {sparse_score:.2f}</span>'
+                        f'<span style="color:{s_color};font-weight:600;font-size:0.8rem;">SigLIP2: {dense_score:.3f}</span>'
+                        f'<span style="color:#d29922;font-size:0.75rem;font-weight:500;">BM25: {sparse_score:.2f}</span>'
                         f'</div>'
                     )
                 else:
                     header_line = (
                         f'<span class="rank-badge">#{r["rank"]} Visual Match</span>'
                         f'<div style="display:flex;justify-content:space-between;align-items:center;margin-top:2px;">'
-                        f'  <span style="color:{s_color};font-weight:600;font-size:0.8rem;">Cosine Sim: {dense_score:.3f}</span>'
+                        f'<span style="color:{s_color};font-weight:600;font-size:0.8rem;">Cosine Sim: {dense_score:.3f}</span>'
                         f'</div>'
                     )
 
-                card_html = textwrap.dedent(f"""
-                    <div style="padding:0 2px;">
-                        {header_line}
-                        <div class="score-bar-bg">
-                            <div class="score-bar-fill" style="width:{bar_pct}%;background:{s_color};"></div>
-                        </div>
-                        <div style="margin-top:6px;line-height:1.8;">
-                            <span class="attr-badge">🚗 {r.get('vehicle_type','—')}</span>
-                            <span class="attr-badge">🎨 {r.get('color','—')}</span>
-                            <span class="attr-badge">🚘 {r.get('body_style','—')}</span>
-                        </div>
-                        {desc_html}
-                        <div style="color:#8b949e;font-size:0.73rem;margin-top:4px;">
-                            ID: <code>{vid_id[:16]}…</code>
-                        </div>
-                    </div>
-                """).strip()
+                vtype = r.get("vehicle_type", "—")
+                vcolor = r.get("color", "—")
+                vbody = r.get("body_style", "—")
+                score_bar = f'<div class="score-bar-bg"><div class="score-bar-fill" style="width:{bar_pct}%;background:{s_color};"></div></div>'
+                badges = f'<div style="margin-top:6px;line-height:1.8;"><span class="attr-badge">🚗 {vtype}</span><span class="attr-badge">🎨 {vcolor}</span><span class="attr-badge">🚘 {vbody}</span></div>'
+                id_html = f'<div style="color:#8b949e;font-size:0.73rem;margin-top:4px;">ID: <code>{vid_id[:16]}…</code></div>'
+
+                card_html = f'<div style="padding:0 2px;">{header_line}{score_bar}{badges}{desc_html}{id_html}</div>'
                 col.markdown(card_html, unsafe_allow_html=True)
 
                 if col.button("View Detail →", key=f"sel_{search_mode}_{vid_id}_{r['rank']}", use_container_width=True):
